@@ -1228,6 +1228,18 @@ impl Builder {
         self
     }
 
+    /// Set whether to support preserving original header order.
+    ///
+    /// Note that this setting does not affect HTTP/2.
+    ///
+    /// Default is false.
+    #[cfg(feature = "http1")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "http1")))]
+    pub fn http1_preserve_header_order(&mut self, val: bool) -> &mut Self {
+        self.h1_builder.preserve_header_order(val);
+        self
+    }
+
     /// Set the maximum number of headers.
     ///
     /// When a response is received, the parser will reserve a buffer to store headers for optimal
