@@ -1,5 +1,5 @@
 [package]
-name = "hyper-util"
+name = "hyper-util-spider"
 version = "0.1.11"
 description = "hyper utilities"
 readme = "README.md"
@@ -13,12 +13,15 @@ categories = ["network-programming", "web-programming::http-client", "web-progra
 edition = "2021"
 rust-version = "1.63"
 
+[lib]
+name = "hyper_util"
+
 [package.metadata.docs.rs]
 features = ["full"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-hyper = "1.6.0"
+hyper-spider = "1.6.0"
 futures-util = { version = "0.3.16", default-features = false }
 http = "1.0"
 http-body = "1.0.0"
@@ -32,7 +35,7 @@ tower-service = { version = "0.3", optional = true }
 libc = { version = "0.2", optional = true }
 
 [dev-dependencies]
-hyper = { version = "1.4.0", features = ["full"] }
+hyper-spider = { version = "1.6.0", features = ["full"] }
 bytes = "1"
 http-body-util = "0.1.0"
 tokio = { version = "1", features = ["macros", "test-util", "signal"] }
@@ -59,17 +62,17 @@ full = [
     "tracing",
 ]
 
-client = ["hyper/client", "dep:tracing", "dep:futures-channel", "dep:tower-service"]
+client = ["hyper-spider/client", "dep:tracing", "dep:futures-channel", "dep:tower-service"]
 client-legacy = ["client", "dep:socket2", "tokio/sync", "dep:libc"]
 
-server = ["hyper/server"]
+server = ["hyper-spider/server"]
 server-auto = ["server", "http1", "http2"]
 server-graceful = ["server", "tokio/sync", "futures-util/alloc"]
 
 service = ["dep:tower-service"]
 
-http1 = ["hyper/http1"]
-http2 = ["hyper/http2"]
+http1 = ["hyper-spider/http1"]
+http2 = ["hyper-spider/http2"]
 
 tokio = ["dep:tokio", "tokio/net", "tokio/rt", "tokio/time"]
 
